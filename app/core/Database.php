@@ -1,43 +1,53 @@
-<?php
+<?php 
 
-Trait Database{
-    private function connect(){
-        $string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
-        $con = new PDO($string,DBUSER,DBPASS);
-        return $con;
-    }
-    public  function query($query, $data = []){
-        $con = $this->connect();
+Trait Database
+{
 
-        $stm = $con->prepare($query);
+	private function connect()
+	{
+		$string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
+		$con = new PDO($string,DBUSER,DBPASS);
+		return $con;
+	}
 
+	public function query($query, $data = [])
+	{
 
-        $check = $stm->execute($data);
-        if ($check){
-            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+		$con = $this->connect();
+		$stm = $con->prepare($query);
 
+		$check = $stm->execute($data);
+		if($check)
+		{
+			$result = $stm->fetchAll(PDO::FETCH_OBJ);
+			if(is_array($result) && count($result))
+			{
+				return $result;
+			}
+		}
 
+		return false;
+	}
 
-            if (is_array($result) && count($result)){
-                return $result;
-            }
-        }
+	public function get_row($query, $data = [])
+	{
 
-        return false;
-    }
+		$con = $this->connect();
+		$stm = $con->prepare($query);
 
-    public  function get_row($query, $data =[]){
-        $con = $this->connect();
-        $stm = $con->prepare($query);
+		$check = $stm->execute($data);
+		if($check)
+		{
+			$result = $stm->fetchAll(PDO::FETCH_OBJ);
+			if(is_array($result) && count($result))
+			{
+				return $result[0];
+			}
+		}
 
-        $check = $stm->execute($data);
-        if ($check){
-            $result = $stm->fetchAll(PDO::FETCH_OBJ);
-            if (is_array($result) && count($result)){
-                return $result[0];
-            }
-        }
-        return false;
-    }
+		return false;
+	}
+	
 }
+
 

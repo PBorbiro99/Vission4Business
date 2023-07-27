@@ -1,18 +1,38 @@
-<?php
+<?php 
+
 
 /**
  * User class
  */
+class User
+{
+	
+	use Model;
 
-class User  {
+	protected $table = 'users';
 
-    use Model;
+	protected $allowedColumns = [
+        'username',
+        'units_now',
+	];
 
-    protected $table = 'users';
+	public function validate($data):bool
+	{
+		$this->errors = [];
 
-    protected $allowedColumns = [
-
-        'name',
-        'age',
-    ];
+		if(empty($data['username']))
+		{   print_r('spanac user');
+			$this->errors['username'] = "Username is required";
+		}else
+		if(empty($data['units_now']))
+		{print_r('spanac units');
+			$this->errors['units_now'] = "units_now is required";
+		}
+		if(empty($this->errors))
+		{print_r($this->errors);
+			return true;
+		}
+        print_r('spanac fals');
+		return false;
+	}
 }

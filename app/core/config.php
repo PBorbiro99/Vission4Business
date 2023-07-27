@@ -1,31 +1,31 @@
-<?php
+<?php 
 
-if ($_SERVER['SERVER_NAME'] == 'localhost'){
+if($_SERVER['SERVER_NAME'] == 'localhost')
+{
+	/** database config **/
+	define('DBNAME', 'my_db');
+	define('DBHOST', 'localhost');
+	define('DBUSER', 'root');
+	define('DBPASS', '');
+	define('DBDRIVER', '');
+	
+	define('ROOT', 'http://localhost/Vission4Business/public');
 
-    /** database config **/
-    define('DBNAME', 'my_db');
-    define('DBHOST', 'localhost');
-    define('DBUSER', 'root');
-    define('DBPASS', '');
-    define('DBDRIVER', '');
+}else
+{
+	/** database config **/
+	define('DBNAME', 'my_db');
+	define('DBHOST', 'localhost');
+	define('DBUSER', 'root');
+	define('DBPASS', '');
+	define('DBDRIVER', '');
 
-
-    define('ROOT', 'http://localhost/Vission4Business/public');
-}else{
-
-    /** database config **/
-    define('DBNAME', 'my_db');
-    define('DBHOST', 'localhost');
-    define('DBUSER', 'root');
-    define('DBPASS', '');
-    define('DBDRIVER', '');
-
-    define('ROOT', 'http://www.vission4business.com');
+	define('ROOT', 'https://www.yourwebsite.com');
 
 }
 
-define('APP_NAME', 'Vission4Business');
-define('APP_DESC', 'Vission4Business');
+define('APP_NAME', "My Webiste");
+define('APP_DESC', "Best website on the planet");
 
-/** true means show errors */
+/** true means show errors **/
 define('DEBUG', true);
